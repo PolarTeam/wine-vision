@@ -1,0 +1,2 @@
+include versioneer.py
+include winevision/_version.py
