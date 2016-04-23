@@ -8,14 +8,7 @@ from setuptools import setup
 from setuptools.command.test import test as TestCommand
 import versioneer
 
-LONG=''
-with open('README.md') as readme:
-  LONG=readme.read()
-
-requirements = []
-with open('requirements.txt') as req:
-    requirements=req.readline()
-
+HERE = os.path.abspath(os.path.dirname(__file__))
 
 class PyTest(TestCommand):
     def finalize_options(self):
@@ -30,25 +23,68 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
-cmdclass_arg = versioneer.get_cmdclass()
-cmdclass_arg.update({'test': PyTest})
+__cmdclass_arg__ = versioneer.get_cmdclass()
+__cmdclass_arg__.update({'test': PyTest})
 
-setup(name='wine-vision',
-      description='Wine vision description.',
-      long_description=LONG,
-      author='merry31',
-      author_email='julien.rallo@gmail.com',
-      install_requires=requirements,
-      license='Apache',
-      url='https://github.com/PolarTeam/wine-vision',
-      version=versioneer.get_version(),
-      scripts = [
-        'cam.py'
-        ],
-      packages=[
-        'winevision',
-        ],
-      tests_require=['pytest'],
-      cmdclass=cmdclass_arg,
-      classifiers=['Development Status :: 1 - Alpha',
-                   'Programming Language :: Python :: 2.7'])
+
+
+__project__      = 'wine-vision'
+__author__       = 'merry31'
+__author_email__ = 'julien.rallo@gmail.com'
+__url__          = 'https://github.com/PolarTeam/wine-vision'
+__platforms__    = 'ALL'
+
+__classifiers__ = [
+    'Development Status :: 1 - Alpha',
+    'Programming Language :: Python :: 2.7'
+
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'Operating System :: POSIX :: Linux',
+    'Topic :: Multimedia :: Graphics :: Capture :: Digital Camera',
+    ]
+
+__keywords__ = [
+    'raspberrypi',
+    'camera',
+    'wine',
+    ]
+
+__requires__ = [
+    'pygame'
+    ]
+
+__extra_requires__ = {
+    'doc':   ['sphinx'],
+    'test':  ['coverage', 'pytest'],
+    }
+
+__entry_points__ = {
+    }
+
+__scripts__ = [
+    'cam.py'
+    ]
+
+
+if __name__ == '__main__':
+    import io
+    with io.open(os.path.join(HERE, 'README.md'), 'r') as readme:
+        setup(
+            name                 = __project__,
+            description          = __doc__,
+            long_description     = readme.read(),
+            classifiers          = __classifiers__,
+            author               = __author__,
+            author_email         = __author_email__,
+            url                  = __url__,
+            keywords             = __keywords__,
+            packages             = find_packages(),
+            scripts              = __scripts__,
+            include_package_data = True,
+            platforms            = __platforms__,
+            install_requires     = __requires__,
+            extras_require       = __extra_requires__,
+            entry_points         = __entry_points__,
+            cmdclass             = __cmdclass_arg__,
+            )
