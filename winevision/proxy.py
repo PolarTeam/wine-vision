@@ -3,5 +3,9 @@
 
 
 class Proxy(object):
-    def __getattribute__(self, *args, **kargs):
+    def __getattr__(self, *args, **kargs):
         return Proxy()
+        
+    def __call__(self, *args, **kargs):
+        return Proxy()
+
