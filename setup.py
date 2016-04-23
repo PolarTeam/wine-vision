@@ -48,7 +48,7 @@ __packages__ = [
     ]
 
 __scripts__ = [
-    'cam.py'
+    'winevision.py'
     ]
 
 def main():
