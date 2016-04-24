@@ -25,11 +25,11 @@ import errno
 import fnmatch
 import io
 import os
-from winevision import proxy
+from winevision import stub
 try:
     import picamera
 except ImportError:
-    picamera = proxy.Proxy()
+    picamera = stub.Stub()
 
 import pygame
 import stat
@@ -40,7 +40,7 @@ from winevision import ui
 try:
     import RPi.GPIO as GPIO
 except ImportError:
-    GPIO = proxy.Proxy()
+    GPIO = stub.Stub()
 from pygame.locals import *
 from subprocess import call  
 
