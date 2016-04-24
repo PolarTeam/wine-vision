@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 
-class Proxy(object):
+class Stub(object):
     def __getattr__(self, *args, **kargs):
-        return Proxy()
+        return Stub()
         
     def __call__(self, *args, **kargs):
-        return Proxy()
+        return Stub()
 
