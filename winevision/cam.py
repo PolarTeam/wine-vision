@@ -1,3 +1,6 @@
+#! /usr/bin/python
+# -*- coding: utf-8 -*-
+
 # Point-and-shoot camera for Raspberry Pi w/camera and Adafruit PiTFT.
 # This must run as root (sudo python cam.py) due to framebuffer, etc.
 #
@@ -22,14 +25,22 @@ import errno
 import fnmatch
 import io
 import os
-import picamera
+from winevision import proxy
+try:
+    import picamera
+except ImportError:
+    picamera = proxy.Proxy()
+
 import pygame
 import stat
 import threading
 import time
 import signal
-import ui
-import RPi.GPIO as GPIO
+from winevision import ui
+try:
+    import RPi.GPIO as GPIO
+except ImportError:
+    GPIO = proxy.Proxy()
 from pygame.locals import *
 from subprocess import call  
 
