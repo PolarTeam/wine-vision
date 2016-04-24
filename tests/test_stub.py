@@ -22,3 +22,29 @@ def test_attributes():
     
     p.attr = "a"
     assert p.attr == "a"
+
+def test_function():
+    p = stub.Stub()
+    assert p is not None
+
+    def inner_function(attr1, attr2):
+        return attr1, attr2
+
+    p.function = inner_function
+
+    assert inner_function == p.function    
+    assert ('a', 'b') == p.function('a', 'b')
+
+
+def test_method():
+    p = stub.Stub()
+    assert p is not None
+
+    def inner_method(self, attr1, attr2):
+        assert self == p
+        return attr1, attr2
+
+    stub.attach_as_method(p, inner_method)
+
+    assert inner_method != p.inner_method 
+    assert ('a', 'b') == p.inner_method('a', 'b')
