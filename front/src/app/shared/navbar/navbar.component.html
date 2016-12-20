@@ -1,0 +1,14 @@
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+  <a [routerLink]="['']" [routerLinkActive]="['router-link-active']" class="navbar-brand" href="#">wine-cellar.me</a>
+  <ul class="nav navbar-nav">
+    <li class="nav-item active">
+      <a [routerLink]="['']" [routerLinkActive]="['router-link-active']" class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['wine/list']" [routerLinkActive]="['router-link-active']" class="nav-link" href="#">wines</a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['event/list']" [routerLinkActive]="['router-link-active']" class="nav-link" href="#">events</a>
+    </li>
+  </ul>
+</nav>
